@@ -20,14 +20,28 @@ else:
 
 filename = input("Enter a .txt file name: ")
 
-name = input("Enter your full name: ")
-address = input("Enter your street address: ")
-number = input("Enter your phone number: ")
 
-with open(filename, 'w') as file_object:
-    file_object.write(name + "\n" + address + "\n" + number)
+def info():
 
-print("Would you like to add another contact? ")
+    name = input("Enter your full name: ")
+    address = input("Enter your street address: ")
+    number = input("Enter your phone number: ")
 
-with open(filename, 'a') as file_object:
-    file_object.write(name + "\n" + address + "\n" + number)
+    with open(filename, 'a') as file_object:
+        file_object.write("\n" + name + address + number)
+
+
+def main():
+
+    while True:
+        menu = input("Would you like to add a contact? Yes or No ")
+        if (menu == "Yes".lower()):
+            info()
+
+        elif (menu == "No".lower()):
+            f = open(filename, 'r')
+            file_contents = f.read()
+            print("Thank you for using the contact directory. Here are your contacts: \n" + file_contents)
+            break
+
+main()
